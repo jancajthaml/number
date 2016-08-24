@@ -132,14 +132,9 @@ private[number] class Complex(private var re: Double, private var im: Double) ex
 
   override def clone(): AnyRef = new Complex(re, im)
 
-  override def toString(): String = {
-    "(" + new java.lang.Double(re) + "," + new java.lang.Double(im) + 
-      ")"
-  }
+  override def toString(): String = s"(${new java.lang.Double(re)},${new java.lang.Double(im)})"
 
-  override def hashCode(): Int = {
-    (new java.lang.Double(re / 2 + im / 2)).hashCode
-  }
+  override def hashCode(): Int = (new java.lang.Double(re / 2 + im / 2)).hashCode
 
   override def byteValue(): Byte = re.toByte
 

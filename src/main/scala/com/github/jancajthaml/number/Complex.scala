@@ -130,7 +130,7 @@ private[number] class Complex(private var re: Double, private var im: Double) ex
     }
   }
 
-  def clone(): AnyRef = new Complex(re, im)
+  override def clone(): AnyRef = new Complex(re, im)
 
   override def toString(): String = {
     "(" + new java.lang.Double(re) + "," + new java.lang.Double(im) + 
@@ -141,7 +141,7 @@ private[number] class Complex(private var re: Double, private var im: Double) ex
     (new java.lang.Double(re / 2 + im / 2)).hashCode
   }
 
-  def byteValue(): Byte = re.toByte
+  override def byteValue(): Byte = re.toByte
 
   def doubleValue(): Double = re
 
@@ -151,6 +151,6 @@ private[number] class Complex(private var re: Double, private var im: Double) ex
 
   def longValue(): Long = re.toLong
 
-  def shortValue(): Short = re.toShort
+  override def shortValue(): Short = re.toShort
 
 }

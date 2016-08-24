@@ -1,20 +1,20 @@
 package com.github.jancajthaml.number;
 
-public final class IntegerNumber extends PreciseNumber {
+class IntegerNumberStub extends PreciseNumber {
 
-    public IntegerNumber() {
+    public IntegerNumberStub() {
         super(true, precision_digits);
     }
 
-    public IntegerNumber(int precision) {
+    public IntegerNumberStub(int precision) {
         super(true, precision);
     }
 
-    public IntegerNumber(IntegerNumber in ) {
+    public IntegerNumberStub(IntegerNumberStub in ) {
         super((PreciseNumber) in );
     }
 
-    public IntegerNumber(double d, int precision) {
+    public IntegerNumberStub(double d, int precision) {
         super(true, precision);
 
         PreciseNumber mpt1 = new PreciseNumber(6, false);
@@ -24,11 +24,11 @@ public final class IntegerNumber extends PreciseNumber {
         infr(mpt1, this, mpt2, Math.min(maxnw - 2, nw));
     }
 
-    public IntegerNumber(String str) {
+    public IntegerNumberStub(String str) {
         this(str, precision_digits);
     }
 
-    public IntegerNumber(String str, int precision) {
+    public IntegerNumberStub(String str, int precision) {
         super(true, precision);
 
         int lnw = Math.min(nw, maxnw - 2);
@@ -41,11 +41,11 @@ public final class IntegerNumber extends PreciseNumber {
         infr(mpt1, this, mpt2, lnw);
     }
 
-    public IntegerNumber(RealNumber mpr) {
+    public IntegerNumberStub(RealNumber mpr) {
         this(mpr, precision_digits);
     }
 
-    public IntegerNumber(RealNumber mpr, int precision) {
+    public IntegerNumberStub(RealNumber mpr, int precision) {
         super(true, precision);
 
         int lnw = Math.min(nw, maxnw - 2);
@@ -56,9 +56,9 @@ public final class IntegerNumber extends PreciseNumber {
         infr(mpt1, this, mpt2, lnw);
     }
 
-    public IntegerNumber assign(PreciseNumber ja) {
+    public IntegerNumberStub assign(PreciseNumber ja) {
         if (ja != this) {
-            if (ja.maxnw == this.maxnw && ja instanceof IntegerNumber) {
+            if (ja.maxnw == this.maxnw && ja instanceof IntegerNumberStub) {
                 PreciseNumber.eq(ja, this, Math.min(nw, this.maxnw - 1));
             } else {
                 int nw1 = Math.min(nw, ja.maxnw - 1);
@@ -73,10 +73,10 @@ public final class IntegerNumber extends PreciseNumber {
         return this;
     }
 
-    public IntegerNumber add(IntegerNumber ja) {
-        IntegerNumber res = new IntegerNumber();
-        IntegerNumber mpt1 = new IntegerNumber();
-        IntegerNumber mpt2 = new IntegerNumber();
+    public IntegerNumberStub add(IntegerNumberStub ja) {
+        IntegerNumberStub res = new IntegerNumberStub();
+        IntegerNumberStub mpt1 = new IntegerNumberStub();
+        IntegerNumberStub mpt2 = new IntegerNumberStub();
 
         add(ja, this, mpt1, nw);
         infr(mpt1, res, mpt2, nw);
@@ -84,10 +84,10 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber subtract(IntegerNumber ja) {
-        IntegerNumber res = new IntegerNumber();
-        IntegerNumber mpt1 = new IntegerNumber();
-        IntegerNumber mpt2 = new IntegerNumber();
+    public IntegerNumberStub subtract(IntegerNumberStub ja) {
+        IntegerNumberStub res = new IntegerNumberStub();
+        IntegerNumberStub mpt1 = new IntegerNumberStub();
+        IntegerNumberStub mpt2 = new IntegerNumberStub();
 
         sub(this, ja, mpt1, nw);
         infr(mpt1, res, mpt2, nw);
@@ -95,8 +95,8 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber negate() {
-        IntegerNumber res = new IntegerNumber();
+    public IntegerNumberStub negate() {
+        IntegerNumberStub res = new IntegerNumberStub();
 
         eq(this, res, nw);
 
@@ -105,10 +105,10 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber multiply(IntegerNumber ja) {
-        IntegerNumber res = new IntegerNumber();
-        IntegerNumber mpt1 = new IntegerNumber();
-        IntegerNumber mpt2 = new IntegerNumber();
+    public IntegerNumberStub multiply(IntegerNumberStub ja) {
+        IntegerNumberStub res = new IntegerNumberStub();
+        IntegerNumberStub mpt1 = new IntegerNumberStub();
+        IntegerNumberStub mpt2 = new IntegerNumberStub();
 
         _mul(ja, this, mpt1, nw);
         infr(mpt1, res, mpt2, nw);
@@ -116,10 +116,10 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber divide(IntegerNumber ja) {
-        IntegerNumber res = new IntegerNumber();
-        IntegerNumber mpt1 = new IntegerNumber();
-        IntegerNumber mpt2 = new IntegerNumber();
+    public IntegerNumberStub divide(IntegerNumberStub ja) {
+        IntegerNumberStub res = new IntegerNumberStub();
+        IntegerNumberStub mpt1 = new IntegerNumberStub();
+        IntegerNumberStub mpt2 = new IntegerNumberStub();
 
         _div(this, ja, mpt1, nw);
         infr(mpt1, res, mpt2, nw);
@@ -127,11 +127,11 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber mod(IntegerNumber ja) {
-        IntegerNumber res = new IntegerNumber();
-        IntegerNumber mpt1 = new IntegerNumber();
-        IntegerNumber mpt2 = new IntegerNumber();
-        IntegerNumber mpt3 = new IntegerNumber();
+    public IntegerNumberStub mod(IntegerNumberStub ja) {
+        IntegerNumberStub res = new IntegerNumberStub();
+        IntegerNumberStub mpt1 = new IntegerNumberStub();
+        IntegerNumberStub mpt2 = new IntegerNumberStub();
+        IntegerNumberStub mpt3 = new IntegerNumberStub();
 
         _div(this, ja, mpt1, nw);
         infr(mpt1, mpt2, mpt3, nw);
@@ -141,8 +141,8 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber abs() {
-        IntegerNumber res = new IntegerNumber();
+    public IntegerNumberStub abs() {
+        IntegerNumberStub res = new IntegerNumberStub();
 
         eq(this, res, nw);
 
@@ -151,16 +151,16 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber max(IntegerNumber val) {
+    public IntegerNumberStub max(IntegerNumberStub val) {
         return (compare(this, val, nw) >= 0) ? this : val;
     }
 
-    public IntegerNumber min(IntegerNumber val) {
+    public IntegerNumberStub min(IntegerNumberStub val) {
         return (compare(this, val, nw) < 0) ? this : val;
     }
 
-    public IntegerNumber sign(PreciseNumber val) {
-        IntegerNumber res = new IntegerNumber();
+    public IntegerNumberStub sign(PreciseNumber val) {
+        IntegerNumberStub res = new IntegerNumberStub();
 
         eq(this, res, nw);
 
@@ -169,10 +169,10 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber pow(IntegerNumber exponent) {
-        IntegerNumber res = new IntegerNumber();
-        IntegerNumber mpt1 = new IntegerNumber();
-        IntegerNumber mpt2 = new IntegerNumber();
+    public IntegerNumberStub pow(IntegerNumberStub exponent) {
+        IntegerNumberStub res = new IntegerNumberStub();
+        IntegerNumberStub mpt1 = new IntegerNumberStub();
+        IntegerNumberStub mpt2 = new IntegerNumberStub();
 
         _log(this, RealNumber.PI, RealNumber.LOG2, mpt1, nw);
         _mul(mpt1, exponent, mpt2, nw);
@@ -182,8 +182,8 @@ public final class IntegerNumber extends PreciseNumber {
         return res;
     }
 
-    public IntegerNumber pow(int exponent) {
-        IntegerNumber res = new IntegerNumber(), mpt1 = new IntegerNumber();
+    public IntegerNumberStub pow(int exponent) {
+        IntegerNumberStub res = new IntegerNumberStub(), mpt1 = new IntegerNumberStub();
 
         _npw(this, exponent, mpt1, nw);
         nint(mpt1, res, nw);

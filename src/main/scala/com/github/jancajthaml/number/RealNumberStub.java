@@ -1,80 +1,77 @@
 package com.github.jancajthaml.number;
 
-//import static com.github.jancajthaml.number.ComplexNumber._cos;
-//import static com.github.jancajthaml.number.ComplexNumber._ang;
+class RealNumberStub extends PreciseNumber {
 
-public class RealNumber extends PreciseNumber {
+    public static RealNumberStub LOG2;
+    public static RealNumberStub LOG10;
+    public static RealNumberStub PI;
+    public static RealNumberStub EPSILON;
 
-    public static RealNumber LOG2;
-    public static RealNumber LOG10;
-    public static RealNumber PI;
-    public static RealNumber EPSILON;
-
-    public RealNumber() {
+    public RealNumberStub() {
         super(true, precision_digits);
     }
 
-    public RealNumber(boolean b, int precision) {
+    public RealNumberStub(boolean b, int precision) {
         super(b, precision);
     }
 
-    public RealNumber(int size, boolean b) {
+    public RealNumberStub(int size, boolean b) {
         super(size, b);
     }
 
-    public RealNumber(RealNumber in ) {
+    public RealNumberStub(RealNumberStub in ) {
         super((PreciseNumber) in );
     }
 
-    public RealNumber(double d) {
+    public RealNumberStub(double d) {
         super(d, precision_digits);
     }
 
-    public RealNumber(double d, int precision) {
+    public RealNumberStub(double d, int precision) {
         super(d, precision);
     }
 
-    public RealNumber(String str) {
+    public RealNumberStub(String str) {
         super(str, precision_digits);
     }
 
-    public RealNumber(String str, int precision) {
+    public RealNumberStub(String str, int precision) {
         super(str, precision);
     }
 
-    public RealNumber(IntegerNumber in ) {
+    public RealNumberStub(IntegerNumber in ) {
         super((PreciseNumber) in );
     };
 
-    RealNumber(int size) {
+    RealNumberStub(int size) {
         super(size, false);
     }
 
-    public RealNumber assign(PreciseNumber ja) {
+    public RealNumberStub assign(PreciseNumber ja) {
         if (ja != this)
             eq(ja, this, Math.min(nw, this.maxnw - 1));
 
         return this;
     }
 
-    public RealNumber add(RealNumber ja) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub add(RealNumberStub ja) {
+        RealNumberStub res = new RealNumberStub();
 
         add(this, ja, res, nw);
 
         return res;
     }
 
-    public RealNumber subtract(RealNumber ja) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub subtract(RealNumberStub ja) {
+        RealNumberStub res = new RealNumberStub();
 
         sub(this, ja, res, nw);
 
         return res;
     }
 
-    public RealNumber negate() {
-        RealNumber res = new RealNumber();
+    public RealNumberStub negate() {
+        RealNumberStub res = new RealNumberStub();
 
         eq(this, res, nw);
 
@@ -83,24 +80,24 @@ public class RealNumber extends PreciseNumber {
         return res;
     }
 
-    public RealNumber multiply(RealNumber ja) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub multiply(RealNumberStub ja) {
+        RealNumberStub res = new RealNumberStub();
 
         _mul(this, ja, res, nw);
 
         return res;
     }
 
-    public RealNumber divide(RealNumber ja) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub divide(RealNumberStub ja) {
+        RealNumberStub res = new RealNumberStub();
 
         _div(this, ja, res, nw);
 
         return res;
     }
 
-    public RealNumber abs() {
-        RealNumber res = new RealNumber();
+    public RealNumberStub abs() {
+        RealNumberStub res = new RealNumberStub();
 
         eq(this, res, nw);
 
@@ -109,16 +106,16 @@ public class RealNumber extends PreciseNumber {
         return res;
     }
 
-    public RealNumber max(RealNumber val) {
+    public RealNumberStub max(RealNumberStub val) {
         return (compare(this, val, nw) >= 0) ? this : val;
     }
 
-    public RealNumber min(RealNumber val) {
+    public RealNumberStub min(RealNumberStub val) {
         return (compare(this, val, nw) < 0) ? this : val;
     }
 
-    public RealNumber sign(PreciseNumber val) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub sign(PreciseNumber val) {
+        RealNumberStub res = new RealNumberStub();
 
         eq(this, res, nw);
 
@@ -127,8 +124,8 @@ public class RealNumber extends PreciseNumber {
         return res;
     }
 
-    public RealNumber pow(PreciseNumber exponent) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub pow(PreciseNumber exponent) {
+        RealNumberStub res = new RealNumberStub();
         PreciseNumber mpt1 = new PreciseNumber();
         PreciseNumber mpt2 = new PreciseNumber();
 
@@ -139,16 +136,16 @@ public class RealNumber extends PreciseNumber {
         return res;
     }
 
-    public RealNumber pow(int exponent) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub pow(int exponent) {
+        RealNumberStub res = new RealNumberStub();
 
         _npw(this, exponent, res, nw);
 
         return res;
     }
 
-    public RealNumber pow(double exponent) {
-        RealNumber res = new RealNumber();
+    public RealNumberStub pow(double exponent) {
+        RealNumberStub res = new RealNumberStub();
         PreciseNumber mpt1 = new PreciseNumber();
         PreciseNumber mpt2 = new PreciseNumber();
 
@@ -159,8 +156,8 @@ public class RealNumber extends PreciseNumber {
         return res;
     }
 
-    public RealNumber sqrt() {
-        RealNumber res = new RealNumber();
+    public RealNumberStub sqrt() {
+        RealNumberStub res = new RealNumberStub();
 
         _sqr(this, res, nw);
 
@@ -168,22 +165,22 @@ public class RealNumber extends PreciseNumber {
     }
 
     static {
-        PI = new RealNumber(mp21, false);
+        PI = new RealNumberStub(mp21, false);
         _pi(PI, nw + 1);
 
-        LOG2 = new RealNumber(mp21, false);
+        LOG2 = new RealNumberStub(mp21, false);
 
         PreciseNumber t2 = new PreciseNumber(6, false);
 
         dmc(new Chunk(2), t2);
         _log(t2, PI, LOG2, LOG2, nw + 1);
 
-        LOG10 = new RealNumber(mp21, false);
+        LOG10 = new RealNumberStub(mp21, false);
 
         dmc(new Chunk(10), t2);
         _log(t2, PI, LOG2, LOG10, nw + 1);
 
-        EPSILON = new RealNumber(mp21, false);
+        EPSILON = new RealNumberStub(mp21, false);
 
         dmc(new Chunk(10), t2);
         _npw(t2, ellog10, EPSILON, nw + 1);

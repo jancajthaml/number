@@ -63,10 +63,14 @@ object ComplexNumber {
     b.i.number_words = n2
     b.i.exponent = a.i.exponent
     i = 0
-    while (i < n1) {b.r.mantissa(i) = a.r.mantissa(i)i += 1
+    while (i < n1) {
+      b.r.mantissa(i) = a.r.mantissa(i)
+      i += 1
     }
     i = 0
-    while (i < n2) {b.i.mantissa(i) = a.i.mantissa(i)i += 1
+    while (i < n2) {
+      b.i.mantissa(i) = a.i.mantissa(i)
+      i += 1
     }
   }
 

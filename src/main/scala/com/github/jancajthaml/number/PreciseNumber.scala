@@ -35,19 +35,29 @@ private[number] object PreciseNumber {
       d(0) = 0
       d(1) = 0
       i = 0
-      while (i < m1) {d(i + 2) = a.mantissa(i)i += 1
+      while (i < m1) {
+        d(i + 2) = a.mantissa(i)
+        i += 1
       }
       i = m1
-      while (i < m2) {d(i + 2) = a.mantissa(i) + db * b.mantissa(i - ish)i += 1
+      while (i < m2) {
+        d(i + 2) = a.mantissa(i) + db * b.mantissa(i - ish)
+        i += 1
       }
       i = m2
-      while (i < m3) {d(i + 2) = a.mantissa(i)i += 1
+      while (i < m3) {
+        d(i + 2) = a.mantissa(i)
+        i += 1
       }
       i = m3
-      while (i < m4) {d(i + 2) = 0.0i += 1
+      while (i < m4) {
+        d(i + 2) = 0.0
+        i += 1
       }
       i = m4
-      while (i < m5) {d(i + 2) = db * b.mantissa(i - ish)i += 1
+      while (i < m5) {
+        d(i + 2) = db * b.mantissa(i - ish)
+        i += 1
       }
       nd = m5
       ixd = ixa
@@ -64,23 +74,28 @@ private[number] object PreciseNumber {
       d(1) = 0
       i = 0
       while (i < m1) {
-        d(i + 2) = db * b.mantissa(i)i += 1
+        d(i + 2) = db * b.mantissa(i)
+        i += 1
       }
       i = m1
       while (i < m2) {
-        d(i + 2) = a.mantissa(i - nsh) + db * b.mantissa(i)i += 1
+        d(i + 2) = a.mantissa(i - nsh) + db * b.mantissa(i)
+        i += 1
       }
       i = m2
       while (i < m3) {
-        d(i + 2) = db * b.mantissa(i)i += 1
+        d(i + 2) = db * b.mantissa(i)
+        i += 1
       }
       i = m3
       while (i < m4) {
-        d(i + 2) = 0.0i += 1
+        d(i + 2) = 0.0
+        i += 1
       }
       i = m4
       while (i < m5) {
-        d(i + 2) = a.mantissa(i - nsh)i += 1
+        d(i + 2) = a.mantissa(i - nsh)
+        i += 1
       }
       nd = m5
       ixd = ixb
@@ -163,9 +178,9 @@ private[number] object PreciseNumber {
     var i = 0
     var ic = 0
     var ia = (if (a.sign) 1 else -1)
-    if (a.number_words == 0.) ia = 0
+    if (a.number_words == 0) ia = 0
     var ib = (if (b.sign) 1 else -1)
-    if (b.number_words == 0.) ib = 0
+    if (b.number_words == 0) ib = 0
     val na = Math.min(a.number_words, lnw)
     val nb = Math.min(b.number_words, lnw)
     if (ia != ib) ic = (fSign(1, ia - ib)).toInt else if (a.exponent != b.exponent) ic = (ia * fSign(1, 
@@ -174,9 +189,9 @@ private[number] object PreciseNumber {
       i = 0
       while (i < Math.min(na, nb)) {
         if (a.mantissa(i) != b.mantissa(i)) {
-          ic = (ia * fSign(1., a.mantissa(i) - b.mantissa(i))).toInt
+          ic = (ia * fSign(1, a.mantissa(i) - b.mantissa(i))).toInt
           sameMantissas = false
-          //break
+          break
         }
         i += 1
       }
@@ -202,12 +217,14 @@ private[number] object PreciseNumber {
       zero(c)
       return
     }
-    if (nb == 1 && b.mantissa(0) == 1.) {
+    if (nb == 1 && b.mantissa(0) == 1) {
       c.number_words = na
       c.sign = !(a.sign ^ b.sign)
       c.exponent = a.exponent - b.exponent
       i = 0
-      while (i < na) {c.mantissa(i) = a.mantissa(i)i += 1
+      while (i < na) {
+        c.mantissa(i) = a.mantissa(i)
+        i += 1
       }
       return
     }
@@ -221,10 +238,13 @@ private[number] object PreciseNumber {
     val md = Math.min(na + nb, lnw)
     d(0) = 0.0
     i = 1
-    while (i <= na) {d(i) = a.mantissa(i - 1)i += 1
+    while (i <= na) {d(i) = a.mantissa(i - 1)
+      i += 1
     }
     i = na + 1
-    while (i < md + 4) {d(i) = 0.0i += 1
+    while (i < md + 4) {
+      d(i) = 0.0
+      i += 1
     }
     j = 2
     while (j <= na + 1) {
@@ -236,7 +256,8 @@ private[number] object PreciseNumber {
       val i2 = Math.min(nb, lnw + 2 - j3) + 2
       val ij = i2 + j3
       i = 2
-      while (i < i2) {d(i + j3) -= t0 * b.mantissa(i - 2)i += 1
+      while (i < i2) {d(i + j3) -= t0 * b.mantissa(i - 2)
+        i += 1
       }
       if (((j - 1) % 32) == 0) {
         i = j
@@ -285,7 +306,7 @@ private[number] object PreciseNumber {
       d(j - 2) = t0
       if (ss == 0.0) {
         stopped = true
-        //break
+        break
       }
       if (ij <= lnw + 1) d(ij + 2) = 0.0
       j += 1
@@ -297,7 +318,8 @@ private[number] object PreciseNumber {
     d(nc + 2) = 0.0
     d(nc + 3) = 0.0
     i = j
-    while (i >= 2) {d(i) = d(i - is)i -= 1
+    while (i >= 2) {d(i) = d(i - is)
+      i -= 1
     }
     d(0) = fSign(nc, if ((!(a.sign ^ b.sign))) 1 else -1)
     d(1) = a.exponent - b.exponent + is - 2
@@ -331,7 +353,7 @@ private[number] object PreciseNumber {
         bb = 5.9604644775390625e-8 * bb
         if (bb < 1.6777216e7) {
           n1 += k
-          //break
+          break
         }
         k += 1
       }
@@ -341,7 +363,7 @@ private[number] object PreciseNumber {
         bb = 1.6777216e7 * bb
         if (bb >= 1.0) {
           n1 -= k
-          //break
+          break
         }
         k += 1
       }
@@ -362,7 +384,7 @@ private[number] object PreciseNumber {
       dd = 1.6777216e7 * (dd - t1 * bb)
       if (j <= na) dd = dd + a.mantissa(j - 1) else if (dd == 0.0) {
         skipJ = true
-        //break
+        break
       }
       j += 1
     }
@@ -392,7 +414,7 @@ private[number] object PreciseNumber {
         aa = 5.9604644775390625e-8 * aa
         if (aa < 1.6777216e7) {
           n1 = n1 + k
-          //break
+          break
         }
         k += 1
       }
@@ -402,7 +424,7 @@ private[number] object PreciseNumber {
         aa = 1.6777216e7 * aa
         if (aa >= 1.0) {
           n1 = n1 - k
-          //break
+          break
         }
         k += 1
       }
@@ -418,7 +440,11 @@ private[number] object PreciseNumber {
     b.mantissa(4) = 0
     b.mantissa(5) = 0
     i = 3
-    while (i >= 0) {if (b.mantissa(i) != 0.) //breaki -= 1
+
+
+    while (i >= 0) {
+      if (b.mantissa(i) != 0) break
+      i -= 1
     }
     aa = i + 1
     b.sign = (a.a >= 0)
@@ -435,7 +461,9 @@ private[number] object PreciseNumber {
     b.sign = a.sign
     b.exponent = a.exponent
     var i = 0
-    while (i <= na) {b.mantissa(i) = a.mantissa(i)i += 1
+    while (i <= na) {
+      b.mantissa(i) = a.mantissa(i)
+      i += 1
     }
   }
 
@@ -460,7 +488,8 @@ private[number] object PreciseNumber {
       b.mantissa(nb + 1) = 0
       i = 0
       while (i < nb) {
-        b.mantissa(i) = a.mantissa(i)i += 1
+        b.mantissa(i) = a.mantissa(i)
+        i += 1
       }
     }
     val nc = na - nb
@@ -472,7 +501,8 @@ private[number] object PreciseNumber {
       c.mantissa(nc + 1) = 0
       i = 0
       while (i < nc) {
-        c.mantissa(i) = a.mantissa(i + nb)i += 1
+        c.mantissa(i) = a.mantissa(i + nb)
+        i += 1
       }
     }
     round(b, lnw)
@@ -518,16 +548,18 @@ private[number] object PreciseNumber {
       c.exponent = a.exponent + b.exponent
       i = 0
       while (i < nb) {
-        c.mantissa(i) = b.mantissa(i)i += 1
+        c.mantissa(i) = b.mantissa(i)
+        i += 1
       }
       return
-    } else if (nb == 1 && b.mantissa(0) == 1.) {
+    } else if (nb == 1 && b.mantissa(0) == 1) {
       c.sign = !(a.sign ^ b.sign)
       c.number_words = na
       c.exponent = a.exponent + b.exponent
       i = 0
       while (i < na) {
-        c.mantissa(i) = a.mantissa(i)i += 1
+        c.mantissa(i) = a.mantissa(i)
+        i += 1
       }
       return
     }
@@ -535,7 +567,9 @@ private[number] object PreciseNumber {
     val nc = Math.min(na + nb, lnw)
     var d2 = a.exponent + b.exponent
     i = 0
-    while (i < nc + 4) {d(i) = 0.0i += 1
+    while (i < nc + 4) {
+      d(i) = 0.0
+      i += 1
     }
     j = 3
     while (j <= na + 2) {
@@ -544,7 +578,8 @@ private[number] object PreciseNumber {
       val n2 = Math.min(nb + 2, lnw + 4 - j3)
       i = 2
       while (i < n2) {
-        d(i + j3) += t1 * b.mantissa(i - 2)i += 1
+        d(i + j3) += t1 * b.mantissa(i - 2)
+        i += 1
       }
       if (((j - 2) % 32) == 0) {
         val i1 = Math.max(3, j - 32)
@@ -564,7 +599,8 @@ private[number] object PreciseNumber {
       d2 += 1.0
       i = nc + 3
       while (i >= 2) {
-        d(i) = d(i - 1)i -= 1
+        d(i) = d(i - 1)
+        i -= 1
       }
     }
     d(0) = fSign(nc, if ((!(a.sign ^ b.sign))) 1.0 else -1.0)
@@ -595,7 +631,7 @@ private[number] object PreciseNumber {
         bb = 5.9604644775390625e-8 * bb
         if (bb < 1.6777216e7) {
           n1 += k
-          //break
+          break
         }
         k += 1
       }
@@ -605,7 +641,7 @@ private[number] object PreciseNumber {
         bb = 1.6777216e7 * bb
         if (bb >= 1.0) {
           n1 -= k
-          //break
+          break
         }
         k += 1
       }
@@ -618,7 +654,8 @@ private[number] object PreciseNumber {
     val d = Array.ofDim[Double](lnw + 4)
     i = 2
     while (i < na + 2) {
-      d(i) = bb * a.mantissa(i - 2)i += 1
+      d(i) = bb * a.mantissa(i - 2)
+      i += 1
     }
     d(0) = fSign(na, (if (a.sign) 1 else -1) * ib)
     d(1) = a.exponent + n1
@@ -654,7 +691,9 @@ private[number] object PreciseNumber {
       b.mantissa(nb) = 0
       b.mantissa(nb + 1) = 0
       i = 0
-      while (i < nb) {b.mantissa(i) = s.mantissa(i)i += 1
+      while (i < nb) {
+        b.mantissa(i) = s.mantissa(i)
+        i += 1
       }
     }
   }
@@ -696,7 +735,7 @@ private[number] object PreciseNumber {
             }
             if (s1 == 0.0) {
               breakLoop = true
-              //break
+              break
             }
             k += 1
           }
@@ -720,7 +759,9 @@ private[number] object PreciseNumber {
         d(2) += 1.6777216e7 * d(1)
         d(1) = 0.0
         i = 1
-        while (i < n4) {d(i) = -d(i)i += 1
+        while (i < n4) {
+          d(i) = -d(i)
+          i += 1
         }
       } else if (d(1) > 0.0) {
         i = n4 - 2
@@ -939,7 +980,7 @@ private[number] object PreciseNumber {
       while (i <= n1) {
         if (a.mantissa(i) != 0) {
           allZero = false
-          //break
+          break
         }
         i += 1
       }
@@ -949,7 +990,9 @@ private[number] object PreciseNumber {
       }
       val k = i
       i = 0
-      while (i <= n1 - k) {a.mantissa(i) = a.mantissa(i + k)i += 1
+      while (i <= n1 - k) {
+        a.mantissa(i) = a.mantissa(i + k)
+        i += 1
       }
       a2 -= k
       na -= Math.max(k - 2, 0)
@@ -962,7 +1005,7 @@ private[number] object PreciseNumber {
       while (i >= 0) {
         if (a.mantissa(i) < 1.6777216e7) {
           loopBreak = true
-          //break
+          break
         }
         a.mantissa(i) -= 1.6777216e7.toFloat
         if (i != 0) a.mantissa(i - 1) += 1 else a.exponent += 1
@@ -981,7 +1024,7 @@ private[number] object PreciseNumber {
         while (i >= 0) {
           if (a.mantissa(i) != 0) {
             allZero = false
-            //break
+            break
           }
           i -= 1
         }
@@ -1115,13 +1158,15 @@ private[number] object PreciseNumber {
       ai = a(i)
       if (ai == '^') {
         caretFound = true
-        //break
+        break
       }
-      if (ai == '.' || ai == '+' || ai == '-') //break
+      if (ai == '.' || ai == '+' || ai == '-') break
       i += 1
     }
     j = 0
-    while (j < 81) {ca(j) = '\0'j += 1
+    while (j < 81) {
+      ca(j) = '\0'
+      j += 1
     }
     if (caretFound) {
       var i2 = i - 1
@@ -1130,7 +1175,11 @@ private[number] object PreciseNumber {
       i = 0
       while (i <= i2) {
         ai = a(i)
-        if (ai == ' ') //continue else if (!java.lang.Character.isDigit(ai)) throw new NumberFormatException("inp_complex: Syntax error in literal string.")
+        if (ai == ' ') {
+          //continue
+        } else if (!java.lang.Character.isDigit(ai)) {
+          throw new NumberFormatException("inp_complex: Syntax error in literal string.")
+        }
         ca(j += 1) = ai
         i += 1
       }
@@ -1142,7 +1191,7 @@ private[number] object PreciseNumber {
         ai = a(i)
         if (ai == 'x' || ai == '*') {
           exit = false
-          //break
+          break
         }
         i += 1
       }
@@ -1156,7 +1205,9 @@ private[number] object PreciseNumber {
       i = 0
       while (i <= l1) {
         ai = a(i + i1)
-        if (ai == ' ' || ai == '+') //continue else if (ai == '-' && id == 0) {
+        if (ai == ' ' || ai == '+') {
+          //continue
+        } else if (ai == '-' && id == 0) {
           id = 1
           is = -1
         } else {
@@ -1176,7 +1227,7 @@ private[number] object PreciseNumber {
     while (i < n) {
       if (a(i) != ' ') {
         exit = false
-        //break
+        break
       }
       i += 1
     }
@@ -1202,12 +1253,16 @@ private[number] object PreciseNumber {
     while (cont) {
       ip = 0
       mm = 0
-      while (mm < 6) {ca(mm) = '0'mm += 1
+      while (mm < 6) {
+        ca(mm) = '0'
+        mm += 1
       }
       i = i1
       while (i < n) {
         ai = a(i)
-        if (ai == ' ')  else if (ai == '.') {
+        if (ai == ' ') {
+
+        } else if (ai == '.') {
           if (ip != 0) throw new NumberFormatException("inp_complex: Syntax error in literal string.")
           ip = id
         } else if (!java.lang.Character.isDigit(ai)) throw new NumberFormatException("inp_complex: Syntax error in literal string.") else {
@@ -1229,7 +1284,9 @@ private[number] object PreciseNumber {
             }
             add(sk0, f, sk2, lnw)
             mm = 0
-            while (mm < 6) {ca(mm) = '0'mm += 1
+            while (mm < 6) {
+              ca(mm) = '0'
+              mm += 1
             }
           }
           if ((i + 1) != n) ib = 0
@@ -1304,10 +1361,14 @@ private[number] object PreciseNumber {
     val len = ca.length
     val blank = 14 - len
     i = 4
-    while (i < blank) {b(i) = ' 'i += 1
+    while (i < blank) {
+      b(i) = ' '
+      i += 1
     }
     i = 0
-    while (i < len) {b(blank + i) = ca(i)i += 1
+    while (i < len) {
+      b(blank + i) = ca(i)
+      i += 1
     }
     b(14) = ' '
     b(15) = 'x'
@@ -1333,7 +1394,7 @@ private[number] object PreciseNumber {
     var skip = false
     j = 1
     while (j <= nl) {
-      if (sk1.exponent == 0.) {
+      if (sk1.exponent == 0) {
         nn = (sk1.mantissa(0)).toInt
         f.number_words = 1
         f.sign = true
@@ -1345,17 +1406,21 @@ private[number] object PreciseNumber {
       }
       ca = String.valueOf(nn).toCharArray()
       i = 0
-      while (i < 6 - ca.length) {b(i + ix) = '0'i += 1
+      while (i < 6 - ca.length) {
+        b(i + ix) = '0'
+        i += 1
       }
       k = 0
-      while (i < 6) {b(i + ix) = ca(k += 1)i += 1
+      while (i < 6) {
+        b(i + ix) = ca(k += 1)
+        i += 1
       }
       ix += 6
       sub(sk1, f, sk0, lnw)
       muld(sk0, new Chunk(1e6), sk1, lnw)
       if (sk1.number_words == 0) {
         skip = true
-        //break
+        break
       }
       j += 1
     }
@@ -1370,7 +1435,7 @@ private[number] object PreciseNumber {
         if (b(i) != '0') {
           ix = i
           loopbreak = true
-          //break
+          break
         }
         b(i) = '\0'
         i -= 1
@@ -1383,7 +1448,7 @@ private[number] object PreciseNumber {
       while (i >= 20) {
         if (b(i) != '9') {
           skip = true
-          //break
+          break
         }
         b(i) = '\0'
         i -= 1
@@ -1395,9 +1460,13 @@ private[number] object PreciseNumber {
           ca = String.valueOf(nx + 1).toCharArray()
           k = 0
           i = 0
-          while (i < 10 - ca.length) {b(i + 4) = ' 'i += 1
+          while (i < 10 - ca.length) {
+            b(i + 4) = ' '
+            i += 1
           }
-          while (i < 10) {b(i + 4) = ca(k += 1)i += 1
+          while (i < 10) {
+            b(i + 4) = ca(k += 1)
+            i += 1
           }
         } else {
           ca(0) = b(18)
@@ -1430,7 +1499,7 @@ private[number] object PreciseNumber {
     while (i < l) {
       if (a(i) == 'D' || a(i) == 'E' || a(i) == 'd' || a(i) == 'e') {
         foundExponent = true
-        //break
+        break
       }
       i += 1
     }
@@ -1446,11 +1515,15 @@ private[number] object PreciseNumber {
     c(1) = '0'
     c(2) = '^'
     i = 0
-    while (i < l2) {c(i + 3) = a(i + i1)i += 1
+    while (i < l2) {
+      c(i + 3) = a(i + i1)
+      i += 1
     }
     c(l2 + 3) = 'x'
     i = 0
-    while (i < l1) {c(i + l2 + 4) = a(i)i += 1
+    while (i < l1) {
+      c(i + l2 + 4) = a(i)
+      i += 1
     }
     c(i + l2 + 4) = '\0'
     inp_complex(c, l1 + l2 + 4, b, lnw)
@@ -1541,7 +1614,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
     val nd = mpouts(this, precision_digits_current, az, nw)
     var i = 0
     i = 0
-    while (i < nd) {res.append(az(i))i += 1
+    while (i < nd) {
+      res.append(az(i))
+      i += 1
     }
     val old = res.toString
     val xx = old.indexOf("x")
@@ -1557,7 +1632,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
     val nd = mpouts(this, precision_digits_current, az, nw)
     var i = 0
     i = 0
-    while (i < nd) {res.append(az(i))i += 1
+    while (i < nd) {
+      res.append(az(i))
+      i += 1
     }
     val old = res.toString
     val hat = old.indexOf("^")
@@ -1916,7 +1993,7 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         mpdivd(sk0, t2, sk2, lnw)
         add(sk3, sk2, sk0, lnw)
         eq(sk0, sk3, lnw)
-      } while (sk2.number_words != 0. && sk2.exponent >= tl);
+      } while (sk2.number_words != 0 && sk2.exponent >= tl);
       i = 1
       while (i <= 8) {
         mul(sk0, sk0, sk1, lnw)
@@ -1948,7 +2025,7 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       if (t2.n != -24 || 
         Math.abs(t2.a * Math.pow(0.50, 24) - ALT) > 3.552713678800501e-15) throw new ArithmeticException("log: LOG (2) must be precomputed.")
     }
-    if (a.number_words == 1 && a.sign && a.exponent == 0 && a.mantissa(0) == 1.) {
+    if (a.number_words == 1 && a.sign && a.exponent == 0 && a.mantissa(0) == 1) {
       b.number_words = 0
       b.exponent = 0
       b.sign = true
@@ -2108,7 +2185,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
     val n2 = n >> 1
     val n4 = n >> 2
     k = 0
-    while (k < n2) {dc1(k) = new Complex(x(k << 1), x((k << 1) + 1))k += 1
+    while (k < n2) {
+      dc1(k) = new Complex(x(k << 1), x((k << 1) + 1))
+      k += 1
     }
     mpfft1(is, m - 1, n1, n2 / n1, dc1, y)
     y(0) = new Complex(2.0 * (dc1(0).real() + dc1(0).aimag()), 0.0)
@@ -2164,7 +2243,8 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       k = 0
       while (k < nr1) {
         j = 0
-        while (j < n2) {z1(k)(j) = x(j * n1 + i + k)j += 1
+        while (j < n2) {z1(k)(j) = x(j * n1 + i + k)
+          j += 1
         }
         k += 1
       }
@@ -2174,7 +2254,8 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         k = 0
         while (k < nr1) {
           j = 0
-          while (j < n2) {y((i + k) * yrow + j) = uu2(iu + k + (j + 1) * n1).multiply(z1(k)(j))j += 1
+          while (j < n2) {y((i + k) * yrow + j) = uu2(iu + k + (j + 1) * n1).multiply(z1(k)(j))
+            j += 1
           }
           k += 1
         }
@@ -2182,7 +2263,8 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         k = 0
         while (k < nr1) {
           j = 0
-          while (j < n2) {y((i + k) * yrow + j) = uu2(iu + k + (j + 1) * n1).conjg().multiply(z1(k)(j))j += 1
+          while (j < n2) {y((i + k) * yrow + j) = uu2(iu + k + (j + 1) * n1).conjg().multiply(z1(k)(j))
+            j += 1
           }
           k += 1
         }
@@ -2194,7 +2276,8 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       k = 0
       while (k < nr2) {
         j = 0
-        while (j < n1) {z2(k)(j) = y(j * yrow + i + k)j += 1
+        while (j < n1) {z2(k)(j) = y(j * yrow + i + k)
+          j += 1
         }
         k += 1
       }
@@ -2203,7 +2286,8 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         k = 0
         while (k < nr2) {
           j = 0
-          while (j < n1) {x(i + k + j * n1) = z2(k)(j)j += 1
+          while (j < n1) {x(i + k + j * n1) = z2(k)(j)
+            j += 1
           }
           k += 1
         }
@@ -2241,7 +2325,8 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         i = 0
         while (i < ns) {
           j = 0
-          while (j < n) {x(i)(j) = y(i)(j)j += 1
+          while (j < n) {x(i)(j) = y(i)(j)
+            j += 1
           }
           i += 1
         }
@@ -2319,7 +2404,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         n1 = Math.max(k - n + 2, 1)
         n2 = Math.min(k + 1, n)
         j = n1 - 1
-        while (j < n2) {t1 += a(j) * a(k - j)j += 1
+        while (j < n2) {
+          t1 += a(j) * a(k - j)
+          j += 1
         }
         c(k) = t1
         k += 1
@@ -2330,14 +2417,18 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         n1 = Math.max(k - n + 2, 1)
         n2 = Math.min(k + 1, n)
         j = n1 - 1
-        while (j < n2) {t1 += a(j) * b(k - j)j += 1
+        while (j < n2) {
+          t1 += a(j) * b(k - j)
+          j += 1
         }
         c(k) = t1
         k += 1
       }
       case -1 => 
         k = 0
-        while (k < n - 1) {c(k) = 0.0k += 1
+        while (k < n - 1) {
+          c(k) = 0.0
+          k += 1
         }
         k = n - 1
         while (k < (n << 1)) {
@@ -2345,7 +2436,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
           n1 = k - n + 2
           n2 = n
           j = n1 - 1
-          while (j < n2) {t1 += a(j) * a(k - j)j += 1
+          while (j < n2) {
+            t1 += a(j) * a(k - j)
+            j += 1
           }
           c(k) = t1
           k += 1
@@ -2353,7 +2446,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
 
       case -2 => 
         k = 0
-        while (k < n - 1) {c(k) = 0.0k += 1
+        while (k < n - 1) {
+          c(k) = 0.0
+          k += 1
         }
         k = n - 1
         while (k < (n << 1)) {
@@ -2361,7 +2456,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
           n1 = k - n + 2
           n2 = n
           j = n1 - 1
-          while (j < n2) {t1 += a(j) * b(k - j)j += 1
+          while (j < n2) {
+            t1 += a(j) * b(k - j)
+            j += 1
           }
           c(k) = t1
           k += 1
@@ -2382,14 +2479,20 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
     val nm = Math.min((n << 1), n2)
     if (Math.abs(iq) == 1) {
       i = 0
-      while (i < n) {d1(i) = a(i)i += 1
+      while (i < n) {
+        d1(i) = a(i)
+        i += 1
       }
       i = n
-      while (i < n2) {d1(i) = 0.0i += 1
+      while (i < n2) {
+        d1(i) = 0.0
+        i += 1
       }
       mpfftrc(1, m2, n2, d1, dc1)
       i = 0
-      while (i < n1 + 1) {dc1(i) = dc1(i).multiply(dc1(i))i += 1
+      while (i < n1 + 1) {
+        dc1(i) = dc1(i).multiply(dc1(i))
+        i += 1
       }
     } else {
       i = 0
@@ -2407,7 +2510,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       mpfftrc(1, m2, n2, d1, dc1)
       mpfftrc(1, m2, n2, d2, dc2)
       i = 0
-      while (i <= n1) {dc1(i) = dc1(i).multiply(dc2(i))i += 1
+      while (i <= n1) {
+        dc1(i) = dc1(i).multiply(dc2(i))
+        i += 1
       }
     }
     mpfftcr(-1, m2, n2, dc1, d3)
@@ -2457,7 +2562,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       k = n1 - m + 1
       if (Math.abs(iq) == 1) {
         i = 0
-        while (i < m21) {d1(i) = a(k + i)i += 1
+        while (i < m21) {
+          d1(i) = a(k + i)
+          i += 1
         }
         mplconv(-1, m21, ms, d1, d2, d3)
       } else {
@@ -2644,7 +2751,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       i += 1
     }
     i = na << 1
-    while (i < nb << 1) {d1(i) = 0.0i += 1
+    while (i < nb << 1) {
+      d1(i) = 0.0
+      i += 1
     }
     i = 0
     while (i < nb) {
@@ -2656,7 +2765,9 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       i += 1
     }
     i = (nb << 1)
-    while (i < (na << 1)) {d2(i) = 0.0i += 1
+    while (i < (na << 1)) {
+      d2(i) = 0.0
+      i += 1
     }
     val nn = Math.max(na, nb) << 1
     val nx = (Math.sqrt(3.0 * nn) + 5.6843418860808015e-14).toInt
@@ -3008,7 +3119,7 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       _sqr(sk0, b, lnw)
       eq(sk1, a, lnw)
       sub(a, b, sk0, lnw)
-    } while (sk0.number_words != 0. && (sk0.exponent < s1 || sk0.exponent >= -2));
+    } while (sk0.number_words != 0 && (sk0.exponent < s1 || sk0.exponent >= -2));
   }
 
   def _cosh(a: PreciseNumber, 
@@ -3297,18 +3408,22 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
     c1 = (new java.lang.Integer(ie)).toString.toCharArray()
     i = 0
     while (i < 4) {
-      b(i) = b1(i)i += 1
+      b(i) = b1(i)
+      i += 1
     }
     while (i < 14 - c1.length) {
-      b(i) = ' 'i += 1
+      b(i) = ' '
+      i += 1
     }
     val ii = 0
     while (i < 14) {
-      b(i) = c1(ii += 1)i += 1
+      b(i) = c1(ii += 1)
+      i += 1
     }
     i = 14
     while (i < nb1) {
-      b(i) = b1(i)i += 1
+      b(i) = b1(i)
+      i += 1
     }
     var i2 = 0
     val i1 = ie1 + m2 - ie2 + 19
@@ -3320,7 +3435,7 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
         while (i >= 20) {
           if (b(i) != '9') {
             skip = true
-            //break
+            break
           }
           b(i) = '0'
           i -= 1
@@ -3332,13 +3447,15 @@ class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
       }
     } else if (nb1 < i1) i = nb1
     while (i < i1) {
-      b(i) = '0'i += 1
+      b(i) = '0'
+      i += 1
     }
     b(i1) = b2(18)
     n = Math.min(i1 + nb2 - 19, (7.225 * lnw + 30).toInt)
     i = i1 + 1
     while (i < n) {
-      b(i) = b2(i - i1 + 19)i += 1
+      b(i) = b2(i - i1 + 19)
+      i += 1
     }
     if (!a.sign) b(17) = '-'
     b(n) = '\0'

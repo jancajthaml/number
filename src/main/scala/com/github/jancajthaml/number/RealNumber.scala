@@ -3,87 +3,7 @@ package com.github.jancajthaml.number
 import ComplexNumber.{_cos, _ang}
 import RealNumber._
 
-object RealNumber {
-
-  var LOG2: RealNumber = new RealNumber(mp21, false)
-
-  var LOG10: RealNumber = new RealNumber(mp21, false)
-
-  var PI: RealNumber = new RealNumber(mp21, false)
-
-  var EPSILON: RealNumber = new RealNumber(mp21, false)
-
-  _pi(PI, nw + 1)
-
-  val t2 = new PreciseNumber(6, false)
-
-  dmc(new Chunk(2), t2)
-
-  _log(t2, PI, LOG2, LOG2, nw + 1)
-
-  dmc(new Chunk(10), t2)
-
-  _log(t2, PI, LOG2, LOG10, nw + 1)
-
-  dmc(new Chunk(10), t2)
-
-  _npw(t2, ellog10, EPSILON, nw + 1)
-
-  PI.number_words -= 1
-
-  LOG2.number_words -= 1
-
-  LOG10.number_words -= 1
-
-  EPSILON.number_words -= 1
-}
-
-class RealNumber extends PreciseNumber(true, precision_digits) {
-
-  def this(b: Boolean, precision: Int) {
-    super(b, precision)
-  }
-
-  def this(size: Int, b: Boolean) {
-    super(size, b)
-  }
-
-  def this(in: RealNumber) {
-    super(in.asInstanceOf[PreciseNumber])
-  }
-
-  def this(d: Double) {
-    super(d, precision_digits)
-  }
-
-  def this(d: Double, precision: Int) {
-    super(d, precision)
-  }
-
-  def this(str: String) {
-    super(str, precision_digits)
-  }
-
-  def this(str: String, precision: Int) {
-    super(str, precision)
-  }
-
-  def this(in: IntegerNumber) {
-    super(in.asInstanceOf[PreciseNumber])
-  }
-
-  def this(size: Int) {
-    super(size, false)
-  }
-
-  def this(mpc: ComplexNumber) {
-    this(mpc, precision_digits)
-  }
-
-  def this(mpc: ComplexNumber, precision: Int) {
-    super(true, precision)
-    eq(mpc.r, this, Math.min(nw, maxnw - 1))
-  }
+trait RealNumber extends PreciseNumber {
 
   def assign(ja: PreciseNumber): RealNumber = {
     if (ja != this) eq(ja, this, Math.min(nw, this.maxnw - 1))
@@ -314,3 +234,59 @@ class RealNumber extends PreciseNumber(true, precision_digits) {
   }
 
 }
+
+object RealNumber {
+
+  var LOG2: RealNumber = new RealNumber(mp21, false)
+
+  var LOG10: RealNumber = new RealNumber(mp21, false)
+
+  var PI: RealNumber = new RealNumber(mp21, false)
+
+  var EPSILON: RealNumber = new RealNumber(mp21, false)
+
+  _pi(PI, nw + 1)
+
+  val t2 = new PreciseNumber(6, false)
+
+  dmc(new Chunk(2), t2)
+
+  _log(t2, PI, LOG2, LOG2, nw + 1)
+
+  dmc(new Chunk(10), t2)
+
+  _log(t2, PI, LOG2, LOG10, nw + 1)
+
+  dmc(new Chunk(10), t2)
+
+  _npw(t2, ellog10, EPSILON, nw + 1)
+
+  PI.number_words -= 1
+
+  LOG2.number_words -= 1
+
+  LOG10.number_words -= 1
+
+  EPSILON.number_words -= 1
+
+  ////
+
+  def apply() = new PreciseNumber(true, precision_digits) with RealNumber
+  def apply(b: Boolean, precision: Int) = new PreciseNumber(b, precision) with RealNumber
+  def apply(size: Int, b: Boolean) = new PreciseNumber(size, b) with RealNumber
+  def apply(in: RealNumber) = new PreciseNumber(in.asInstanceOf[PreciseNumber]) with RealNumber
+  def apply(d: Double) = new PreciseNumber(d, precision_digits) with RealNumber
+  def apply(d: Double, precision: Int) = new PreciseNumber(d, precision) with RealNumber
+  def apply(str: String) = new PreciseNumber(str, precision_digits) with RealNumber
+  def apply(str: String, precision: Int) = new PreciseNumber(str, precision) with RealNumber
+  def apply(in: IntegerNumber) = new PreciseNumber(in.asInstanceOf[PreciseNumber]) with RealNumber
+  def apply(size: Int) = new PreciseNumber(size, false) with RealNumber
+  def apply(mpc: ComplexNumber) = new PreciseNumber(mpc, precision_digits) with RealNumber
+  def apply(mpc: ComplexNumber, precision: Int) = {
+    val x: PreciseNumber = new PreciseNumber(true, precision) with RealNumber
+    eq(mpc.r, this, Math.min(nw, maxnw - 1))
+    x
+  }
+  
+}
+

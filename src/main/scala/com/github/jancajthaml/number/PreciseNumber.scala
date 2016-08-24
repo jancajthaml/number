@@ -1,8 +1,8 @@
 package com.github.jancajthaml.number
 
-import PrecisionNumber._
+import PreciseNumber._
 
-private[number] object PrecisionNumber {
+private[number] object PreciseNumber {
 
   var t30: Double = 0
 
@@ -12,9 +12,9 @@ private[number] object PrecisionNumber {
 
   def getPrecisionInDigits(): Int = precision_digits
 
-  def add(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def add(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var i = 0
     val na = Math.min(a.number_words, lnw)
@@ -92,12 +92,12 @@ private[number] object PrecisionNumber {
     mpnorm(d, c, lnw)
   }
 
-  def cbrt(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def cbrt(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     val lnw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(lnw3, false)
-    val sk1 = new PrecisionNumber(lnw3, false)
-    val sk2 = new PrecisionNumber(lnw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(lnw3, false)
+    val sk1 = new PreciseNumber(lnw3, false)
+    val sk2 = new PreciseNumber(lnw3, false)
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
       zero(b)
@@ -159,7 +159,7 @@ private[number] object PrecisionNumber {
     round(b, nws)
   }
 
-  def compare(a: PrecisionNumber, b: PrecisionNumber, lnw: Int): Int = {
+  def compare(a: PreciseNumber, b: PreciseNumber, lnw: Int): Int = {
     var i = 0
     var ic = 0
     var ia = (if (a.sign) 1 else -1)
@@ -185,9 +185,9 @@ private[number] object PrecisionNumber {
     ic
   }
 
-  def mpdiv(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def mpdiv(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var i = 0
     var j = 0
@@ -304,9 +304,9 @@ private[number] object PrecisionNumber {
     mpnorm(d, c, lnw)
   }
 
-  def mpdivd(a: PrecisionNumber, 
+  def mpdivd(a: PreciseNumber, 
       b: Chunk, 
-      c: PrecisionNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var j = 0
     var k = 0
@@ -314,7 +314,7 @@ private[number] object PrecisionNumber {
     var br = 0.0
     var dd = 0.0
     var t1 = 0.0
-    val f = new PrecisionNumber(6, false)
+    val f = new PreciseNumber(6, false)
     val na = Math.min(a.number_words, lnw)
     val ib = (fSign(1.0, b.a)).toInt
     if (na == 0) {
@@ -375,7 +375,7 @@ private[number] object PrecisionNumber {
     mpnorm(d, c, lnw)
   }
 
-  def dmc(a: Chunk, b: PrecisionNumber) {
+  def dmc(a: Chunk, b: PreciseNumber) {
     var i = 0
     var k = 0
     var aa = 0.0
@@ -425,7 +425,7 @@ private[number] object PrecisionNumber {
     b.number_words = (aa).toInt
   }
 
-  def eq(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def eq(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
       zero(b)
@@ -439,9 +439,9 @@ private[number] object PrecisionNumber {
     }
   }
 
-  def infr(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def infr(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     val na = Math.min(a.number_words, lnw)
     val ma = a.exponent
@@ -479,7 +479,7 @@ private[number] object PrecisionNumber {
     round(c, lnw)
   }
 
-  def mdc(a: PrecisionNumber, b: Chunk) {
+  def mdc(a: PreciseNumber, b: Chunk) {
     var aa = 0.0
     var isAZero = false
     if (a.number_words == 0) {
@@ -498,9 +498,9 @@ private[number] object PrecisionNumber {
     }
   }
 
-  def mul(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def mul(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var i = 0
     var j = 0
@@ -572,14 +572,14 @@ private[number] object PrecisionNumber {
     mpnorm(d, c, lnw)
   }
 
-  def muld(a: PrecisionNumber, 
+  def muld(a: PreciseNumber, 
       b: Chunk, 
-      c: PrecisionNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var i = 0
     var k = 0
     var bb = 0.0
-    val f = new PrecisionNumber(6, false)
+    val f = new PreciseNumber(6, false)
     val na = Math.min(a.number_words, lnw)
     val ib = (fSign(1.0, b.a)).toInt
     if (na == 0 || b.a == 0.0) {
@@ -627,10 +627,10 @@ private[number] object PrecisionNumber {
     mpnorm(d, c, lnw)
   }
 
-  def nint(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def nint(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     var i = 0
-    val f = new PrecisionNumber(6, false)
-    val s = new PrecisionNumber(lnw + 2, false)
+    val f = new PreciseNumber(6, false)
+    val s = new PreciseNumber(lnw + 2, false)
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
       zero(b)
@@ -659,7 +659,7 @@ private[number] object PrecisionNumber {
     }
   }
 
-  private def mpnorm(d: Array[Double], a: PrecisionNumber, lnw: Int) {
+  private def mpnorm(d: Array[Double], a: PreciseNumber, lnw: Int) {
     val risc = true
     var t1 = 0.0
     var t2 = 0.0
@@ -742,16 +742,16 @@ private[number] object PrecisionNumber {
     round(a, lnw)
   }
 
-  def mpnpwr(a: PrecisionNumber, 
+  def mpnpwr(a: PreciseNumber, 
       n: Int, 
-      b: PrecisionNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var j = 0
     var t1 = 0.0
     val lnw3 = lnw + 3
-    val f1 = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(lnw3, false)
-    val sk1 = new PrecisionNumber(lnw3, false)
+    val f1 = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(lnw3, false)
+    val sk1 = new PreciseNumber(lnw3, false)
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
       if (n >= 0) {
@@ -814,20 +814,20 @@ private[number] object PrecisionNumber {
     round(b, nws)
   }
 
-  def mpnrt(a: PrecisionNumber, 
+  def mpnrt(a: PreciseNumber, 
       n: Int, 
-      b: PrecisionNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var k = 0
     var t2 = 0.0
     var tn = 0.0
     val lnw3 = lnw + 3
-    val f1 = new PrecisionNumber(6, false)
-    val f2 = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(lnw3, false)
-    val sk1 = new PrecisionNumber(lnw3, false)
-    val sk2 = new PrecisionNumber(lnw3, false)
-    val sk3 = new PrecisionNumber(lnw3, false)
+    val f1 = new PreciseNumber(6, false)
+    val f2 = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(lnw3, false)
+    val sk1 = new PreciseNumber(lnw3, false)
+    val sk2 = new PreciseNumber(lnw3, false)
+    val sk3 = new PreciseNumber(lnw3, false)
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
       zero(b)
@@ -927,7 +927,7 @@ private[number] object PrecisionNumber {
     round(b, nws)
   }
 
-  def round(a: PrecisionNumber, lnw: Int) {
+  def round(a: PreciseNumber, lnw: Int) {
     var i = 0
     var a2 = a.exponent
     a.exponent = 0
@@ -1003,14 +1003,14 @@ private[number] object PrecisionNumber {
     }
   }
 
-  def mpsqrt(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def mpsqrt(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     var k = 0
     var t2 = 0.0
     val lnw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(lnw3, false)
-    val sk1 = new PrecisionNumber(lnw3, false)
-    val sk2 = new PrecisionNumber(lnw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(lnw3, false)
+    val sk1 = new PreciseNumber(lnw3, false)
+    val sk2 = new PreciseNumber(lnw3, false)
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
       zero(b)
@@ -1071,11 +1071,11 @@ private[number] object PrecisionNumber {
     round(b, nws)
   }
 
-  def sub(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def sub(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
-    val bb = new PrecisionNumber(0, false)
+    val bb = new PreciseNumber(0, false)
     bb.sign = !b.sign
     bb.number_words = b.number_words
     bb.exponent = b.exponent
@@ -1084,7 +1084,7 @@ private[number] object PrecisionNumber {
     bb.mantissa = null
   }
 
-  def zero(in: PrecisionNumber) {
+  def zero(in: PreciseNumber) {
     in.number_words = 0
     in.sign = true
     in.exponent = 0
@@ -1092,7 +1092,7 @@ private[number] object PrecisionNumber {
 
   def inp_complex(a: Array[Char], 
       n: Int, 
-      b: PrecisionNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var i = 0
     var j = 0
@@ -1102,10 +1102,10 @@ private[number] object PrecisionNumber {
     var ai = 0
     val ca = Array.ofDim[Char](81)
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
     val nws = lnw += 1
     var i1 = 0
     var nn = 0
@@ -1254,7 +1254,7 @@ private[number] object PrecisionNumber {
     round(b, nws)
   }
 
-  def mpoutc(a: PrecisionNumber, b: Array[Char], lnw: Int): Int = {
+  def mpoutc(a: PreciseNumber, b: Array[Char], lnw: Int): Int = {
     var i = 0
     var j = 0
     var k = 0
@@ -1263,9 +1263,9 @@ private[number] object PrecisionNumber {
     var aa = 0.0
     var t1 = 0.0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
     val na = Math.min(a.number_words, lnw)
     lnw += 1
     f.sign = true
@@ -1422,7 +1422,7 @@ private[number] object PrecisionNumber {
 
   def dexc(a: Array[Char], 
       l: Int, 
-      b: PrecisionNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var i = 0
     var foundExponent = false
@@ -1456,7 +1456,7 @@ private[number] object PrecisionNumber {
     inp_complex(c, l1 + l2 + 4, b, lnw)
   }
 
-  def mpouts(a: PrecisionNumber, 
+  def mpouts(a: PreciseNumber, 
       la: Int, 
       cs: Array[Char], 
       lnw: Int): Int = {
@@ -1466,7 +1466,7 @@ private[number] object PrecisionNumber {
   }
 }
 
-class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
+class PreciseNumber(in: PreciseNumber) extends Shared with Cloneable {
 
   var maxnw: Int = in.maxnw
 
@@ -1533,7 +1533,7 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     dexc(temp, temp.length, this, Math.min(nw, maxnw - 2))
   }
 
-  def clone(): AnyRef = new PrecisionNumber(this)
+  def clone(): AnyRef = new PreciseNumber(this)
 
   override def toString(): String = {
     val res = new StringBuffer()
@@ -1569,18 +1569,18 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
   override def equals(o: Any): Boolean = {
     if (o == this) return true
     try {
-      0 == compare(this, o.asInstanceOf[PrecisionNumber], nw)
+      0 == compare(this, o.asInstanceOf[PreciseNumber], nw)
     } catch {
       case cce: ClassCastException => false
     }
   }
 
   def compareTo(o: AnyRef): Int = {
-    compare(this, o.asInstanceOf[PrecisionNumber], nw)
+    compare(this, o.asInstanceOf[PreciseNumber], nw)
   }
 
   def isNegative(): Boolean = {
-    (compareTo(new PrecisionNumber(true, 10)) < 0)
+    (compareTo(new PreciseNumber(true, 10)) < 0)
   }
 
   def doubleValue(): Double = this.toDPE().value()
@@ -1600,18 +1600,18 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
   }
 
   
-  def mpang(x: PrecisionNumber, 
-      y: PrecisionNumber, 
-      pi: PrecisionNumber, 
-      a: PrecisionNumber, 
+  def mpang(x: PreciseNumber, 
+      y: PreciseNumber, 
+      pi: PreciseNumber, 
+      a: PreciseNumber, 
       lnw: Int) {
     var k = 0
     val nw3 = lnw + 3
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
-    val sk3 = new PrecisionNumber(nw3, false)
-    val sk4 = new PrecisionNumber(nw3, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
+    val sk3 = new PreciseNumber(nw3, false)
+    val sk4 = new PreciseNumber(nw3, false)
     val ix = if (x.sign) 1 else -1
     val nx = Math.min(x.number_words, lnw)
     val iy = if (y.sign) 1 else -1
@@ -1680,17 +1680,17 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(a, nws)
   }
 
-  def mpcssh(a: PrecisionNumber, 
-      al2: PrecisionNumber, 
-      x: PrecisionNumber, 
-      y: PrecisionNumber, 
+  def mpcssh(a: PreciseNumber, 
+      al2: PreciseNumber, 
+      x: PreciseNumber, 
+      y: PreciseNumber, 
       lnw: Int) {
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
-    val sk3 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
+    val sk3 = new PreciseNumber(nw3, false)
     val nws = lnw
     lnw += 1
     f.sign = true
@@ -1710,21 +1710,21 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(y, nws)
   }
 
-  def ssn_complex(a: PrecisionNumber, 
-      pi: PrecisionNumber, 
-      x: PrecisionNumber, 
-      y: PrecisionNumber, 
+  def ssn_complex(a: PreciseNumber, 
+      pi: PreciseNumber, 
+      x: PreciseNumber, 
+      y: PreciseNumber, 
       lnw: Int) {
     var t2 = 0.0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
-    val sk3 = new PrecisionNumber(nw3, false)
-    val sk4 = new PrecisionNumber(nw3, false)
-    val sk5 = new PrecisionNumber(nw3, false)
-    val sk6 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
+    val sk3 = new PreciseNumber(nw3, false)
+    val sk4 = new PreciseNumber(nw3, false)
+    val sk5 = new PreciseNumber(nw3, false)
+    val sk6 = new PreciseNumber(nw3, false)
     val na = Math.min(a.number_words, lnw)
     var l1 = 0
     if (na == 0) {
@@ -1845,18 +1845,18 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(y, nws)
   }
 
-  def mpexp(a: PrecisionNumber, 
-      al2: PrecisionNumber, 
-      b: PrecisionNumber, 
+  def mpexp(a: PreciseNumber, 
+      al2: PreciseNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var i = 0
     var l1 = 0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
-    val sk3 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
+    val sk3 = new PreciseNumber(nw3, false)
     val t1 = new Chunk()
     mdc(a, t1)
     t1.a = t1.value()
@@ -1929,15 +1929,15 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(b, nws)
   }
 
-  def log(a: PrecisionNumber, 
-      al2: PrecisionNumber, 
-      b: PrecisionNumber, 
+  def log(a: PreciseNumber, 
+      al2: PreciseNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var k = 0
     val nw3 = lnw + 3
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
     val na = Math.min(a.number_words, lnw)
     if (a.sign == false || na == 0) throw new ArithmeticException("log: Argument is less than or equal to zero -->" + a)
     val t1 = new Chunk()
@@ -1979,16 +1979,16 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(b, nws)
   }
 
-  def mppi(pi: PrecisionNumber, lnw: Int) {
+  def mppi(pi: PreciseNumber, lnw: Int) {
     var k = 0
     var t1 = 0.0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
-    val sk3 = new PrecisionNumber(nw3, false)
-    val sk4 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
+    val sk3 = new PreciseNumber(nw3, false)
+    val sk4 = new PreciseNumber(nw3, false)
     val nws = lnw
     lnw += 1
     t1 = nws * log10(1.6777216e7)
@@ -2480,14 +2480,14 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     }
   }
 
-  def mpcbrx(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def mpcbrx(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     var k = 0
     var t1 = 0.0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
     val na = Math.min(a.number_words, lnw)
     val ncr = (Math.pow(2, pointer)).toInt
     if (na == 0) {
@@ -2551,17 +2551,17 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(b, nws)
   }
 
-  def _div(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def _div(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var k = 0
     var t1 = 0.0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
     val nb = Math.min(b.number_words, lnw)
     val ncr = (Math.pow(2, pointer)).toInt
     if (nb == 0) throw new ArithmeticException("_div: Divisor is zero")
@@ -2614,9 +2614,9 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(c, nws)
   }
 
-  def _mul(a: PrecisionNumber, 
-      b: PrecisionNumber, 
-      c: PrecisionNumber, 
+  def _mul(a: PreciseNumber, 
+      b: PreciseNumber, 
+      c: PreciseNumber, 
       lnw: Int) {
     var t1 = 0.0
     var t2 = 0.0
@@ -2684,16 +2684,16 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     mpnorm(d1, c, lnw)
   }
 
-  def _npw(a: PrecisionNumber, 
+  def _npw(a: PreciseNumber, 
       n: Int, 
-      b: PrecisionNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var j = 0
     var t1 = 0.0
     val nw2 = lnw + 2
-    val f1 = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
+    val f1 = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
     val ncr = (Math.pow(2, pointer)).toInt
     val na = Math.min(a.number_words, lnw)
     if (na <= ncr && n >= 0 && n <= 4) {
@@ -2754,20 +2754,20 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     }
   }
 
-  def _nrt(a: PrecisionNumber, 
+  def _nrt(a: PreciseNumber, 
       n: Int, 
-      b: PrecisionNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var k = 0
     var t2 = 0.0
     var tn = 0.0
     val nw3 = lnw + 3
-    val f1 = new PrecisionNumber(6, false)
-    val f2 = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
-    val sk3 = new PrecisionNumber(nw3, false)
+    val f1 = new PreciseNumber(6, false)
+    val f2 = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
+    val sk3 = new PreciseNumber(nw3, false)
     val ncr = (Math.pow(2, pointer)).toInt
     val na = Math.min(a.number_words, lnw)
     if (na == 0) {
@@ -2870,13 +2870,13 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(b, nws)
   }
 
-  def _sqr(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def _sqr(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     var k = 0
     val nw3 = lnw + 3
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw3, false)
-    val sk1 = new PrecisionNumber(nw3, false)
-    val sk2 = new PrecisionNumber(nw3, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw3, false)
+    val sk1 = new PreciseNumber(nw3, false)
+    val sk2 = new PreciseNumber(nw3, false)
     val na = Math.min(a.number_words, lnw)
     val ncr = (Math.pow(2, pointer)).toInt
     if (na == 0) {
@@ -2937,7 +2937,7 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     round(b, nws)
   }
 
-  def _sq(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  def _sq(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     var t1 = 0.0
     var t2 = 0.0
     var t3 = 0.0
@@ -2991,10 +2991,10 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     mpnorm(d1, b, lnw)
   }
 
-  private def mpagmx(a: PrecisionNumber, b: PrecisionNumber, lnw: Int) {
+  private def mpagmx(a: PreciseNumber, b: PreciseNumber, lnw: Int) {
     val nw2 = lnw + 2
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
     var l1 = 0
     var s1 = 0
     val dpe1 = new Chunk(0.50, 0)
@@ -3011,17 +3011,17 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     } while (sk0.number_words != 0. && (sk0.exponent < s1 || sk0.exponent >= -2));
   }
 
-  def _cosh(a: PrecisionNumber, 
-      pi: PrecisionNumber, 
-      al2: PrecisionNumber, 
-      x: PrecisionNumber, 
-      y: PrecisionNumber, 
+  def _cosh(a: PreciseNumber, 
+      pi: PreciseNumber, 
+      al2: PreciseNumber, 
+      x: PreciseNumber, 
+      y: PreciseNumber, 
       lnw: Int) {
     val nw2 = lnw + 2
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
-    val sk2 = new PrecisionNumber(nw2, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
+    val sk2 = new PreciseNumber(nw2, false)
     f.sign = true
     f.number_words = 1
     f.exponent = 0
@@ -3036,18 +3036,18 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     muld(sk2, dpe1, y, lnw)
   }
 
-  def _exp(a: PrecisionNumber, 
-      pi: PrecisionNumber, 
-      al2: PrecisionNumber, 
-      b: PrecisionNumber, 
+  def _exp(a: PreciseNumber, 
+      pi: PreciseNumber, 
+      al2: PreciseNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     var k = 0
     val nit = 1
     val nw2 = lnw + 2
-    val f1 = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
-    val sk2 = new PrecisionNumber(nw2, false)
+    val f1 = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
+    val sk2 = new PreciseNumber(nw2, false)
     val ncr = (Math.pow(2, pointer)).toInt
     val t1 = new Chunk()
     mdc(a, t1)
@@ -3063,8 +3063,7 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     mdc(pi, t2)
     if (t2.n != 0 || Math.abs(t2.a - Math.PI) > 3.552713678800501e-15) throw new ArithmeticException("_exp: PI must be precomputed.")
     if (t1.a >= 1e9) {
-      if (t1.a > 0.0) throw new ArithmeticException("_exp: Argument is too large --> " + t1.a + " x 10 ^" + 
-        t1.n) else {
+      if (t1.a > 0.0) throw new ArithmeticException(s"_exp: Argument is too large --> ${t1.a} x 10 ^${t1.n}") else {
         zero(b)
         return
       }
@@ -3096,21 +3095,21 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     }
   }
 
-  def _log(a: PrecisionNumber, 
-      pi: PrecisionNumber, 
-      al2: PrecisionNumber, 
-      b: PrecisionNumber, 
+  def _log(a: PreciseNumber, 
+      pi: PreciseNumber, 
+      al2: PreciseNumber, 
+      b: PreciseNumber, 
       lnw: Int) {
     val mzl = -5
     var st = 0.0
     var tn = 0.0
     val nw2 = lnw + 2
-    val f1 = new PrecisionNumber(6, false)
-    val f4 = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
-    val sk2 = new PrecisionNumber(nw2, false)
-    val sk3 = new PrecisionNumber(nw2, false)
+    val f1 = new PreciseNumber(6, false)
+    val f4 = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
+    val sk2 = new PreciseNumber(nw2, false)
+    val sk3 = new PreciseNumber(nw2, false)
     val na = Math.min(a.number_words, lnw)
     val ncr = (Math.pow(2, pointer)).toInt
     if (lnw <= ncr) {
@@ -3179,16 +3178,16 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     eq(sk0, b, lnw)
   }
 
-  def _pi(pi: PrecisionNumber, lnw: Int) {
+  def _pi(pi: PreciseNumber, lnw: Int) {
     var k = 0
     var t1 = 0.0
     val nw2 = lnw + 2
-    val f = new PrecisionNumber(6, false)
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
-    val sk2 = new PrecisionNumber(nw2, false)
-    val sk3 = new PrecisionNumber(nw2, false)
-    val sk4 = new PrecisionNumber(nw2, false)
+    val f = new PreciseNumber(6, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
+    val sk2 = new PreciseNumber(nw2, false)
+    val sk3 = new PreciseNumber(nw2, false)
+    val sk4 = new PreciseNumber(nw2, false)
     val ncr = (Math.pow(2, pointer)).toInt
     if (lnw <= ncr) {
       mppi(pi, lnw)
@@ -3231,7 +3230,7 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     eq(sk2, pi, lnw)
   }
 
-  def outx(a: PrecisionNumber, b: Array[Char], lnw: Int): Int = {
+  def outx(a: PreciseNumber, b: Array[Char], lnw: Int): Int = {
     var i = 0
     var n = 0
     val na = Math.min(a.number_words, lnw)
@@ -3244,11 +3243,11 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     val b1 = Array.ofDim[Char]((lnw << 3) + 31)
     val b2 = Array.ofDim[Char]((lnw << 3) + 31)
     val nw2 = lnw + 2
-    val sk0 = new PrecisionNumber(nw2, false)
-    val sk1 = new PrecisionNumber(nw2, false)
-    val sk2 = new PrecisionNumber(nw2, false)
-    val sk3 = new PrecisionNumber(nw2, false)
-    val sk4 = new PrecisionNumber(nw2, false)
+    val sk0 = new PreciseNumber(nw2, false)
+    val sk1 = new PreciseNumber(nw2, false)
+    val sk2 = new PreciseNumber(nw2, false)
+    val sk3 = new PreciseNumber(nw2, false)
+    val sk4 = new PreciseNumber(nw2, false)
     t1 = a.mantissa(0) + 5.9604644775390625e-8 * a.mantissa(1) + 
       3.552713678800501e-15 * a.mantissa(2)
     t2 = log10(t1)
@@ -3297,15 +3296,19 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
     val ie = ie1 + m2 - m1
     c1 = (new java.lang.Integer(ie)).toString.toCharArray()
     i = 0
-    while (i < 4) {b(i) = b1(i)i += 1
+    while (i < 4) {
+      b(i) = b1(i)i += 1
     }
-    while (i < 14 - c1.length) {b(i) = ' 'i += 1
+    while (i < 14 - c1.length) {
+      b(i) = ' 'i += 1
     }
     val ii = 0
-    while (i < 14) {b(i) = c1(ii += 1)i += 1
+    while (i < 14) {
+      b(i) = c1(ii += 1)i += 1
     }
     i = 14
-    while (i < nb1) {b(i) = b1(i)i += 1
+    while (i < nb1) {
+      b(i) = b1(i)i += 1
     }
     var i2 = 0
     val i1 = ie1 + m2 - ie2 + 19
@@ -3328,12 +3331,14 @@ class PrecisionNumber(in: PrecisionNumber) extends Shared with Cloneable {
         b(i) = c1(0)
       }
     } else if (nb1 < i1) i = nb1
-    while (i < i1) {b(i) = '0'i += 1
+    while (i < i1) {
+      b(i) = '0'i += 1
     }
     b(i1) = b2(18)
     n = Math.min(i1 + nb2 - 19, (7.225 * lnw + 30).toInt)
     i = i1 + 1
-    while (i < n) {b(i) = b2(i - i1 + 19)i += 1
+    while (i < n) {
+      b(i) = b2(i - i1 + 19)i += 1
     }
     if (!a.sign) b(17) = '-'
     b(n) = '\0'

@@ -168,4 +168,5 @@ class IntegerNumber extends PreciseNumber(true, precision_digits) {
     nint(mpt1, res, nw)
     res
   }
+
 }

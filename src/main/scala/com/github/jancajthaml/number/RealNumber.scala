@@ -15,7 +15,7 @@ object RealNumber {
 
   _pi(PI, nw + 1)
 
-  val t2 = new PrecisionNumber(6, false)
+  val t2 = new PreciseNumber(6, false)
 
   dmc(new Chunk(2), t2)
 
@@ -38,7 +38,7 @@ object RealNumber {
   EPSILON.number_words -= 1
 }
 
-class RealNumber extends PrecisionNumber(true, precision_digits) {
+class RealNumber extends PreciseNumber(true, precision_digits) {
 
   def this(b: Boolean, precision: Int) {
     super(b, precision)
@@ -49,7 +49,7 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
   }
 
   def this(in: RealNumber) {
-    super(in.asInstanceOf[PrecisionNumber])
+    super(in.asInstanceOf[PreciseNumber])
   }
 
   def this(d: Double) {
@@ -69,7 +69,7 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
   }
 
   def this(in: IntegerNumber) {
-    super(in.asInstanceOf[PrecisionNumber])
+    super(in.asInstanceOf[PreciseNumber])
   }
 
   def this(size: Int) {
@@ -85,7 +85,7 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
     eq(mpc.r, this, Math.min(nw, maxnw - 1))
   }
 
-  def assign(ja: PrecisionNumber): RealNumber = {
+  def assign(ja: PreciseNumber): RealNumber = {
     if (ja != this) eq(ja, this, Math.min(nw, this.maxnw - 1))
     this
   }
@@ -136,17 +136,17 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
     if ((compare(this, i, nw) < 0)) this else i
   }
 
-  def sign(i: PrecisionNumber): RealNumber = {
+  def sign(i: PreciseNumber): RealNumber = {
     val res = new RealNumber()
     eq(this, res, nw)
     res.sign = i.sign
     res
   }
 
-  def pow(exponent: PrecisionNumber): RealNumber = {
+  def pow(exponent: PreciseNumber): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
-    val mpt2 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
+    val mpt2 = new PreciseNumber()
     _log(this, PI, LOG2, mpt1, nw)
     _mul(mpt1, exponent, mpt2, nw)
     _exp(mpt2, PI, LOG2, mpt1, nw)
@@ -161,8 +161,8 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def pow(exponent: Double): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
-    val mpt2 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
+    val mpt2 = new PreciseNumber()
     _log(this, PI, LOG2, mpt1, nw)
     muld(mpt1, new Chunk(exponent), mpt2, nw)
     _exp(mpt2, PI, LOG2, res, nw)
@@ -171,9 +171,9 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def acos(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
-    val mpt2 = new PrecisionNumber()
-    val mpt3 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
+    val mpt2 = new PreciseNumber()
+    val mpt3 = new PreciseNumber()
     dmc(new Chunk(1), mpt1)
     _mul(this, this, mpt2, nw)
     sub(mpt1, mpt2, mpt3, nw)
@@ -184,7 +184,7 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def aint(): RealNumber = {
     val res = new RealNumber()
-    infr(this, res, new PrecisionNumber(), nw)
+    infr(this, res, new PreciseNumber(), nw)
     res
   }
 
@@ -196,9 +196,9 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def asin(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
-    val mpt2 = new PrecisionNumber()
-    val mpt3 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
+    val mpt2 = new PreciseNumber()
+    val mpt3 = new PreciseNumber()
     dmc(new Chunk(1), mpt1)
     _mul(this, this, mpt2, nw)
     sub(mpt1, mpt2, mpt3, nw)
@@ -209,7 +209,7 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def atan(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber(6, false)
+    val mpt1 = new PreciseNumber(6, false)
     dmc(new Chunk(1), mpt1)
     _ang(this, mpt1, PI, res, nw)
     res
@@ -223,14 +223,14 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def cos(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
     _cos(this, PI, res, mpt1, nw)
     res
   }
 
   def cosh(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
     _cosh(this, PI, LOG2, res, mpt1, nw)
     res
   }
@@ -249,7 +249,7 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def log10(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
     _log(this, PI, LOG2, mpt1, nw)
     _div(mpt1, LOG10, res, nw)
     res
@@ -277,14 +277,14 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def sin(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
     _cos(this, PI, mpt1, res, nw)
     res
   }
 
   def sinh(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
     _cosh(this, PI, LOG2, mpt1, res, nw)
     res
   }
@@ -297,8 +297,8 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def tan(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
-    val mpt2 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
+    val mpt2 = new PreciseNumber()
     _cos(this, PI, mpt1, mpt2, nw)
     _div(mpt1, mpt2, res, nw)
     res
@@ -306,8 +306,8 @@ class RealNumber extends PrecisionNumber(true, precision_digits) {
 
   def tanh(): RealNumber = {
     val res = new RealNumber()
-    val mpt1 = new PrecisionNumber()
-    val mpt2 = new PrecisionNumber()
+    val mpt1 = new PreciseNumber()
+    val mpt2 = new PreciseNumber()
     _cosh(this, PI, PI, mpt1, mpt2, nw)
     _div(mpt1, mpt2, res, nw)
     res

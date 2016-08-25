@@ -59,17 +59,29 @@ class Real(val value: RealNumber) extends java.lang.Number {
 
   def >= (that: Real): Boolean = this.value.compareTo(that.value) >= 0
 
-  def <  (that: Real): Boolean = this.value.compareTo(that.value) <  0
+  def < (that: Real): Boolean = this.value.compareTo(that.value) <  0
 
-  def >  (that: Real): Boolean = this.value.compareTo(that.value) > 0
+  def > (that: Real): Boolean = this.value.compareTo(that.value) > 0
 
-  def +  (that: Real): Real = new Real(this.value.add(that.value))
+  def + (that: Real): Real = new Real(this.value.add(that.value))
+  def + (that: Int): Real = new Real(this.value.add(new RealNumber(that)))
+  def + (that: Double): Real = new Real(this.value.add(new RealNumber(that)))
 
-  def -  (that: Real): Real = new Real(this.value.subtract(that.value))
+  def - (that: Real): Real = new Real(this.value.subtract(that.value))
+  def - (that: Int): Real = new Real(this.value.subtract(new RealNumber(that)))
+  def - (that: Double): Real = new Real(this.value.subtract(new RealNumber(that)))
 
-  def *  (that: Real): Real = new Real(this.value.multiply(that.value))
+  def * (that: Real): Real = new Real(this.value.multiply(that.value))
+  def * (that: Int): Real = new Real(this.value.multiply(new RealNumber(that)))
+  def * (that: Double): Real = new Real(this.value.multiply(new RealNumber(that)))
 
-  def /  (that: Real): Real = new Real(this.value.divide(that.value))
+  def ** (that: Real): Real = new Real(this.value.pow(that.value))
+  def ** (that: Int): Real = new Real(this.value.pow(that))
+  def ** (that: Double): Real = new Real(this.value.pow(that))
+  
+  def / (that: Real): Real = new Real(this.value.divide(that.value))
+  def / (that: Int): Real = new Real(this.value.divide(new RealNumber(that)))
+  def / (that: Double): Real = new Real(this.value.divide(new RealNumber(that)))
 
   def min (that: Real): Real = new Real(this.value.min(that.value))
 

@@ -39,10 +39,6 @@ class RealNumber extends PreciseNumber {
         super(str, precision);
     }
 
-    public RealNumber(IntegerNumber in ) {
-        super((PreciseNumber) in );
-    };
-
     RealNumber(int size) {
         super(size, false);
     }

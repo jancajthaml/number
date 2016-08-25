@@ -34,12 +34,11 @@ object Real {
   implicit def bigDecimal2ordered(x: Real): Ordered[Real] =
     new Ordered[Real] with Proxy {
       def self: Any = x
-      def compare(y: Real): Int = x.value.equals(y.value)
+      def compare(y: Real): Int = x.value.compareTo(y.value)
   }
 }
 
-@serializable
-class Real(val value: BigDec) extends java.lang.Number {
+class Real(val value: RealNumber) extends java.lang.Number {
 
   override def hashCode(): Int = this.value.hashCode()
 
@@ -79,8 +78,6 @@ class Real(val value: BigDec) extends java.lang.Number {
   def unary_- : Real = new Real(this.value.negate())
 
   def abs: Real = new Real(this.value.abs())
-
-  def signum: Int = this.value.signum()
 
   override def byteValue = intValue.toByte
 

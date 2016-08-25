@@ -1,6 +1,6 @@
 package com.github.jancajthaml.number;
 
-public final class IntegerNumber extends PreciseNumber {
+class IntegerNumber extends PreciseNumber {
 
     public IntegerNumber() {
         super(true, precision_digits);

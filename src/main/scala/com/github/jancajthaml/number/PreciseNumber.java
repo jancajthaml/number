@@ -31,9 +31,7 @@ class PreciseNumber implements Cloneable {
 
     public static final void setMaximumPrecision(int p) {
         if (p != precision_current) {
-
-            p = Math.min(Math.abs(p), 3600);
-            precision_current = p;
+            precision_current = Math.min(Math.abs(p), 3600);
             pointer = 7;
             round = 1;
             precision_digits = precision_current;

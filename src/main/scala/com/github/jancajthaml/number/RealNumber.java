@@ -1,8 +1,5 @@
 package com.github.jancajthaml.number;
 
-//import static com.github.jancajthaml.number.ComplexNumber._cos;
-//import static com.github.jancajthaml.number.ComplexNumber._ang;
-
 public class RealNumber extends PreciseNumber {
 
     public static RealNumber LOG2;

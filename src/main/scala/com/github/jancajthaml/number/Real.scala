@@ -24,18 +24,6 @@ object Real {
   def apply(x: Array[Char]): Real =  new Real(new RealNumber(x.toString))
 
   def apply(x: String): Real =  new Real(new RealNumber(x))
-
-  implicit def int2bigDecimal(i: Int): Real = apply(i)
-
-  implicit def long2bigDecimal(l: Long): Real = apply(l)
-
-  implicit def double2bigDecimal(d: Double): Real = apply(d)
-
-  implicit def bigDecimal2ordered(x: Real): Ordered[Real] =
-    new Ordered[Real] with Proxy {
-      def self: Any = x
-      def compare(y: Real): Int = x.value.compareTo(y.value)
-  }
 }
 
 class Real(val value: RealNumber) extends java.lang.Number {

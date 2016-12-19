@@ -1,6 +1,6 @@
 package com.github.jancajthaml.number;
 
-class RealNumber extends PreciseNumber {
+public class RealNumber extends PreciseNumber {
 
     public static RealNumber LOG2;
     public static RealNumber LOG10;
